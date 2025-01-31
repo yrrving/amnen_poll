@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivalla Omröstning</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>Vivalla Omröstning</h2>
+    <form id="pollForm">
+        <h3>Vilka ämnen anser du att ni arbetar med i Vivalla?</h3>
+        <div id="q1"></div>
+        
+        <h3>Vilka ämnen saknar du eller önskar du att ni hade mer stöd i?</h3>
+        <div id="q2"></div>
+        
+        <h3>Vilka ämnen anser du att besökarna känner till att de kan lära sig i Vivalla?</h3>
+        <div id="q3"></div>
+        
+        <button type="submit">Skicka svar</button>
+    </form>
+    <script>
+        const subjects = [
+            "Print & Tryck", "Spelutveckling", "Animation", "Designa hus & hem (arkitektur)", "Miljödesign", "Video & Film",
+            "Foto", "Karaktärsdesign", "Lifeskills", "3D miljöer", "Robotik", "Produktutveckling", "Musik", "Virtuellt lärande (VR)",
+            "Programmering", "Digital identitet / Marknadsföring", "Podcast", "Webb/Apputveckling"
+        ];
+        
+        function createCheckboxList(containerId) {
+            const container = document.getElementById(containerId);
+            subjects.forEach(subject => {
+                const label = document.createElement("label");
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.name = containerId;
+                checkbox.value = subject;
+                label.appendChild(checkbox);
+                label.appendChild(document.createTextNode(" " + subject));
+                container.appendChild(label);
+            });
+        }
+        
+        createCheckboxList("q1");
+        createCheckboxList("q2");
+        createCheckboxList("q3");
+        
+        document.getElementById("pollForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            alert("Tack för ditt svar!");
+        });
+    </script>
+</body>
+</html>
